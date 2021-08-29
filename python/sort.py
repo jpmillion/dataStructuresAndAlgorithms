@@ -39,4 +39,40 @@ def merge(arr, start, mid, end, copy):
         else:
             arr[k] = copy[j]
             j += 1
+
+def quickSort(arr):
+    if len(arr) < 2:
+        return arr
+
+    quickSortHelper(arr, 0, len(arr) - 1)
+    return arr
+
+def quickSortHelper(arr, start, end):
+    if start >= end:
+        return arr
     
+    pivot = start
+    left = pivot + 1
+    right = end
+
+    while left <= right:
+
+        if arr[left] > arr[pivot] and arr[right] <= arr[pivot]:
+            arr[left], arr[right] = arr[right], arr[left]
+
+        if arr[left] <= arr[pivot]:
+            left += 1
+
+        if arr[right] > arr[pivot]:
+            right -= 1
+
+    arr[pivot], arr[right] = arr[right], arr[pivot]
+
+    # sort smaller half first
+    if right - 1 - start < end - left:
+        quickSortHelper(arr, start, right-1)
+        quickSortHelper(arr, left, end)
+    else:
+        quickSortHelper(arr, left, end)
+        quickSortHelper(arr, start, right-1)
+

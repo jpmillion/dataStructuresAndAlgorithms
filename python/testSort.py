@@ -8,6 +8,12 @@ class TestSort(unittest.TestCase):
 
         sort.mergeSort(arr)
         self.assertListEqual([-50, -30, -10, 0, 5, 10, 20, 30, 40], arr, 'should sort array')
+
+    def testQuickSort(self):
+        arr = [20, -10, -30, 30, 40, 10, 0, -50, 5]
+        
+        sort.quickSort(arr)
+        self.assertListEqual([-50, -30, -10, 0, 5, 10, 20, 30, 40], arr, 'should sort array')
     
 
 if __name__ == '__main__':
