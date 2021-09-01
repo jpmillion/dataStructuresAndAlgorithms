@@ -39,7 +39,7 @@ end
 
 def mergeSortHelper(arr, start, finish, arrCopy)
     return if start >= finish
-    midpoint = midpoint = ((start + finish) / 2).floor
+    midpoint = ((start + finish) / 2).floor
 
     mergeSortHelper(arrCopy, start, midpoint, arr)
     mergeSortHelper(arrCopy, midpoint + 1, finish, arr)
@@ -62,5 +62,41 @@ def mergeB(arr, start, midpoint, finish, arrCopy)
     end
 end
 
+def quickSort(arr)
+    return arr if arr.length < 2
+    quickSortHelper(arr, 0, arr.length - 1)
+    arr
+end
+
+def quickSortHelper(arr, start, finish)
+    return if start >= finish
+    
+    pivot = start
+    left = pivot + 1
+    right = finish
+
+    while left <= right do
+        arr[left], arr[right] = arr[right], arr[left] if arr[left] > arr[pivot] && arr[pivot] >= arr[right]
+        left += 1 if arr[left] <= arr[pivot]
+        right -= 1 if arr[right] > arr[pivot]
+    end
+
+    arr[pivot], arr[right] = arr[right], arr[pivot]
+
+    if finish - left > right - 1 - start
+        quickSortHelper(arr, start, right - 1)
+        quickSortHelper(arr, left, finish)
+    else
+        quickSortHelper(arr, left, finish)
+        quickSortHelper(arr, start, right - 1)
+    end
+end
+
+puts 'mergeSortA'
 puts mergeSortA([3, 7, -7, 11, 4, -7, 1, 0, -1, 13])
+puts 'mergeSortB'
 puts mergeSortB([3, 7, -7, 11, 4, -7, 1, 0, -1, 13])
+puts 'quickSort'
+puts quickSort([3, 7, -7, 11, 4, -7, 1, 0, -1, 13])
+
+
