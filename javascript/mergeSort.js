@@ -83,6 +83,23 @@ function swap(arr, i, j) {
     arr[j] = temp;
 }
 
+function binarySearch(arr, target) {
+    let start = 0;
+    let end  = arr.length - 1;
+
+    while (start <= end) {
+        const mid = Math.floor((start + end) / 2);
+
+        if (target < arr[mid]) end = mid - 1;
+
+        else if (target > arr[mid]) start = mid + 1;
+
+        else return mid;
+    }
+
+    return -1;
+}
+
 
 console.log(mergeSort1([-9, 9, -8, 8, 7, 6, -7, -6]));
 
@@ -90,4 +107,8 @@ console.log(mergeSort2([-9, 9, -8, 8, 7, 6, -7, -6]));
 
 console.log(quickSort([-9, 9, -8, 8, 7, 6, -7, -6]));
 
-
+console.log(binarySearch([-9,-8,-7,-6,6,7,8,9], 9));
+console.log(binarySearch([-9,-8,-7,-6,6,7,8,9], -9));
+console.log(binarySearch([-9,-8,-7,-6,6,7,8,9], -6));
+console.log(binarySearch([-9,-8,-7,-6,6,7,8,9], 6));
+console.log(binarySearch([-9,-8,-7,-6,6,7,8,9], 100));
