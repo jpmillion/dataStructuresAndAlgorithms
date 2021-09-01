@@ -25,10 +25,27 @@ function fac(n) {
     return product;
 }
 
+function isPrime(n) {
+    if (n < 0) return 'invalid input';
+    if (n < 2 || (n % 2 == 0 && n !== 2)) return false;
+
+    const squareRoot = Math.floor(Math.sqrt(n));
+
+    for (let i = 3; i <= squareRoot; i += 2) {
+        if (n % i === 0) return false;
+    }
+
+    return true;
+}
+
 for (let i = -1; i < 10; i++) {
     console.log(fib(i));
 }
 
 for (let i = -1; i < 11; i++) {
     console.log(fac(i));
+}
+
+for (let i = -1; i < 100; i += 2) {
+    console.log(i + ': ' + isPrime(i));
 }
