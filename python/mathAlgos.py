@@ -1,3 +1,6 @@
+from math import ceil, floor, sqrt
+
+
 def fib(n):
     if n < 1:
         return 'Input must be positive'
@@ -20,3 +23,19 @@ def fac(n):
         product *= i
 
     return product
+
+def isPrime(n):
+    if n < 0:
+        return 'invalid input'
+        
+    if n < 2 or (n % 2 == 0 and n != 2):
+        return False
+
+    squareRoot = ceil(sqrt(n))
+
+    for i in range(3, squareRoot, 2):
+        if n % i == 0:
+            return False
+
+    return True
+    

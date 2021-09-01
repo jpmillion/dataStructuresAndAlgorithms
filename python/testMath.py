@@ -18,5 +18,13 @@ class TestMath(unittest.TestCase):
         self.assertEqual(1, mathAlgos.fac(1), 'should equal 1')
         self.assertEqual('invalid input', mathAlgos.fac(-2), 'input must be positive')
 
+    def testIsPrime(self):
+        self.assertEqual(False, mathAlgos.isPrime(35), 'should equal false')
+        self.assertEqual(True, mathAlgos.isPrime(23), 'should equal true')
+        self.assertEqual(False, mathAlgos.isPrime(63), 'should equal false')
+        self.assertEqual(True, mathAlgos.isPrime(29), 'should equal true')
+        self.assertEqual(True, mathAlgos.isPrime(2), 'should equal true')
+        self.assertEqual('invalid input', mathAlgos.isPrime(-1), 'input must be positive')
+
 if __name__ == '__main__':
     unittest.main()
