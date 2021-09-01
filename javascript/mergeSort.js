@@ -47,12 +47,47 @@ function mergeInPlace(arr, start, midPoint, end, arrCopy) {
     }
 }
 
-arr = mergeSort1([-9, 9, -8, 8, 7, 6, -7, -6]);
-console.log(arr);
+function quickSort(arr) {
+    if (arr.length < 2) return arr;
+    quickSortHelper(arr, 0, arr.length - 1);
+    return arr;
+}
 
-arr = mergeSort2([-9, 9, -8, 8, 7, 6, -7, -6]);
-console.log(arr);
+function quickSortHelper(arr, start, end) {
+    if (start >= end) return arr;
+
+    let pivot = start;
+    let left = start + 1;
+    let right = end;
+
+    while (left <= right) {
+        if (arr[left] > arr[pivot] && arr[pivot] >= arr[right]) swap(arr, left, right);
+        if (arr[left] <= arr[pivot]) left++;
+        if (arr[right] > arr[pivot]) right--;
+    }
+
+    swap(arr, pivot, right);
+
+    if (end - left > right - 1 - start) {
+        quickSortHelper(arr, start, right - 1);
+        quickSortHelper(arr, left, end);
+    } else {
+        quickSortHelper(arr, left, end);
+        quickSortHelper(arr, start, right - 1);
+    }
+}
+
+function swap(arr, i, j) {
+    const temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
 
 
+console.log(mergeSort1([-9, 9, -8, 8, 7, 6, -7, -6]));
+
+console.log(mergeSort2([-9, 9, -8, 8, 7, 6, -7, -6]));
+
+console.log(quickSort([-9, 9, -8, 8, 7, 6, -7, -6]));
 
 
