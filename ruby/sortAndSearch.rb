@@ -92,11 +92,38 @@ def quickSortHelper(arr, start, finish)
     end
 end
 
+def binarySearch(arr, t)
+    start = 0
+    finish = arr.length - 1
+
+    while start <= finish
+        mid = ((start + finish) / 2).floor
+
+        if t < arr[mid] 
+            finish = mid - 1
+        elsif t > arr[mid]
+            start = mid + 1
+        else
+            return mid
+        end
+    end
+
+    return -1
+end
+
 puts 'mergeSortA'
 puts mergeSortA([3, 7, -7, 11, 4, -7, 1, 0, -1, 13])
 puts 'mergeSortB'
 puts mergeSortB([3, 7, -7, 11, 4, -7, 1, 0, -1, 13])
 puts 'quickSort'
-puts quickSort([3, 7, -7, 11, 4, -7, 1, 0, -1, 13])
+a = quickSort([3, 7, -7, 11, 4, -6, 1, 0, -1, 13])
+puts a
+puts 'binarySearch'
+puts binarySearch(a, 13)
+puts binarySearch(a, -7)
+puts binarySearch(a, 0)
+puts binarySearch(a, 3)
+puts binarySearch(a, 7)
+puts binarySearch(a, 1000)
 
 
