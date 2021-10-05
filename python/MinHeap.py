@@ -1,7 +1,15 @@
 class MinHeap:
 
-    def __init__(self):
-        self.heap = []
+    def __init__(self, arr):
+        self.heap = arr
+        self.buildHeap()
+
+    def buildHeap(self):
+        heap = self.heap
+        firstParentIdx = (len(heap)) // 2 - 1
+        for i in reversed(range(0, firstParentIdx + 1)):
+            self.siftDown(i)
+        
     
     def siftDown(self, parentIdx):
         heap = self.heap
