@@ -29,6 +29,22 @@ class MinHeap:
             else: 
                 return
 
+    def bubbleUp(self):
+        heap = self.heap
+        childIdx = len(heap) - 1
+
+        while childIdx > 0:
+            parentIdx = ((childIdx + 1) // 2) - 1
+
+            if heap[childIdx] >= heap[parentIdx]:
+                break
+
+            heap[childIdx], heap[parentIdx] = heap[parentIdx], heap[childIdx]
+
+            childIdx = parentIdx
+
+
+
     def remove(self):
         heap = self.heap
         endIdx = len(heap) - 1
@@ -40,3 +56,7 @@ class MinHeap:
         self.siftDown(0)
         
         return minElement
+
+    def insert(self, element):
+        self.heap.append(element)
+        self.bubbleUp()
